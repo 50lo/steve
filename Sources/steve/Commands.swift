@@ -109,7 +109,7 @@ struct Commands {
             Output.error("Accessibility permission denied", quiet: ctx.options.quiet)
             return UitoolExit.permissionDenied.rawValue
         }
-        let depth = parseIntFlag(args, "--depth") ?? 3
+        let depth = parseIntFlag(args, "--depth") ?? 6
         let windowTitle = parseStringFlag(args, "--window")
         return withResolvedRoot(options: ctx.options, windowTitle: windowTitle, quiet: ctx.options.quiet) { app, root, path in
             let info = AXHelper.elementInfo(element: root, pid: app.processIdentifier, path: path, depth: depth)

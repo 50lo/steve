@@ -50,4 +50,16 @@ final class ParsingTests: XCTestCase {
         let (_, error) = parseGlobalOptions(&args)
         XCTAssertEqual(error, "Invalid pid")
     }
+
+    func testCommandUsageIncludesClick() {
+        XCTAssertNotNil(commandUsage("click"))
+    }
+
+    func testCommandUsageIncludesElements() {
+        XCTAssertNotNil(commandUsage("elements"))
+    }
+
+    func testCommandUsageIncludesScreenshot() {
+        XCTAssertNotNil(commandUsage("screenshot"))
+    }
 }
