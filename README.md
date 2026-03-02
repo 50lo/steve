@@ -23,6 +23,8 @@ All commands output structured text to stdout by default, except `screenshot` wh
 
 Use `--format json` (or `-j`) for compact JSON output. Errors go to stderr and return a non-zero exit code.
 
+Use `steve <command> --help` for per-command usage. The most useful ones are `elements`, `find`, `click`, `click-at`, and `screenshot`.
+
 Text:
 
 ```
@@ -60,9 +62,11 @@ steve quit "AppName" --force
 steve elements
 steve elements --depth 5
 steve elements --window "Settings"
+steve outline-rows --window "QuickWhisper"
 steve find "Button"
 steve find --title "Submit"
 steve find --text "Dictation Mode"
+steve find --text "react" --window "QuickWhisper" --descendants
 steve find --text "Dictation Mode" --window "Settings" --ancestor-role AXRow --click
 steve find --role AXButton --title "OK"
 steve find --identifier "loginButton"
@@ -92,6 +96,9 @@ steve scroll --element "ax://1234/0.4" up
 
 - `--text` matches visible text via `AXValue`, `AXDescription`, and `AXStaticText` title (case-insensitive substring).
 - `--window "Title"` scopes `find`, `elements`, and `click` to a specific window title.
+- `elements` defaults to depth `6`; increase `--depth` when a SwiftUI hierarchy is still truncated.
+- For sidebars and outlines, prefer `outline-rows` first because it exposes row labels, ids, and selection state directly.
+- If a visible label lives inside a row or cell, use `find --text ... --descendants` so the match can bubble up from nested static text.
 - `--ancestor-role AXRow|AXCell|AXButton --click` clicks the nearest ancestor role after a text match.
 
 ### Assertions

@@ -119,9 +119,22 @@ func commandUsage(_ command: String) -> String? {
         steve find [--role <role>] [--title <title>] [--text <text>] [--identifier <id>]
                    [--window <title>] [--ancestor-role <role>] [--descendants|--desc] [--click]
         """
+    case "elements":
+        return """
+        steve elements [--window <title>] [--depth <n>]
+        """
     case "outline-rows":
         return """
         steve outline-rows [--outline <title>] [--window <title>]
+        """
+    case "click":
+        return """
+        steve click <id>
+        steve click [--role <role>] [--title <title>] [--text <text>] [--identifier <id>] [--window <title>]
+        """
+    case "click-at":
+        return """
+        steve click-at <x> <y> [--double] [--right]
         """
     case "exists":
         return "steve exists [--role <role>] [--title <title>] [--text <text>] [--identifier <id>] [--window <title>]"
@@ -129,6 +142,10 @@ func commandUsage(_ command: String) -> String? {
         return "steve wait [--role <role>] [--title <title>] [--text <text>] [--identifier <id>] [--window <title>] [--gone] [--timeout <sec>]"
     case "assert":
         return "steve assert [--role <role>] [--title <title>] [--text <text>] [--identifier <id>] [--window <title>] [--enabled] [--checked] [--value <value>]"
+    case "screenshot":
+        return """
+        steve screenshot [--window <title>] [--element <id>] [-o <path>|--output <path>]
+        """
     default:
         return nil
     }

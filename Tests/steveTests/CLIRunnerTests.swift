@@ -16,4 +16,14 @@ final class CLIRunnerTests: XCTestCase {
         let code = runCLI(args: ["-h"])
         XCTAssertEqual(code, UitoolExit.success.rawValue)
     }
+
+    func testRunCLIClickHelp() {
+        let code = runCLI(args: ["click", "--help"])
+        XCTAssertEqual(code, UitoolExit.success.rawValue)
+    }
+
+    func testRunCLIElementsHelp() {
+        let code = runCLI(args: ["elements", "--help"])
+        XCTAssertEqual(code, UitoolExit.success.rawValue)
+    }
 }
